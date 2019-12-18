@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Configuration status="debug">
+
+	<!-- Appenders tag defines where to log, how to log -->
+	<!-- if we give console tag, output prints in console -->
+	<!-- if we give output tag, output prints in output file -->
+	
+	<!-- setting the basePath and making it generic -->
+	<!-- this property is for the location of logs -->
+	<Properties>
+		<Property name="basePath">logs</Property>
+	</Properties>	
+	<!-- this appenders is for the console -->	 
+ <!-- <Appenders> --> 
+  <!--  <Console name="Console" target="SYSTEM_OUT"> -->  
+   <!-- <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/> -->    
+   <!-- </Console> -->  
+   <!-- </Appenders> -->
+  
+  <!-- Printing logs inside a file in our basePath -->
+  <!-- based upon filePattern on size criteria, new file is created -->
+  	 <!--  --><Appenders>
+	 <!--  -->	<RollingFile name="File" fileName="${basePath}/prints.log" filePattern="%{basePath}/prints-%d{yyyy-MM-dd HH}.log">
+	 <!--  -->	<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+	 <!--  -->	<SizeBasedTriggeringPolicy size="10 MB" />	
+	 <!--  -->	</RollingFile>
+	 <!--  --></Appenders>
+  
+  <!-- inside loggers, we define the errors to be logged -->
+
+  <!-- this section is  used to target specific package to log with different types of error-->
+  <!-- additivity= false is used to skip running this test again on the root level, avoid duplication -->
+  <Loggers>
+  <logger name="src/test/java/com/ebpearls/restapi/files/TestConfigs" level="all" additivity="false">
+  <AppenderRef ref="File"/>
+   </logger>
+   
+  <!-- <logger name="src/test/java/com/ebpearls/restapi/files/Payload" level="all" additivity="false">
+  <AppenderRef ref="File"/>
+   </logger> -->
+  
+  <logger name="src/test/java/com/ebpearls/restapi/post/Login" level="all" additivity="false">
+  <AppenderRef ref="File"/>
+   </logger>
+ <!--  <logger name="src/test/java/com/ebpearls/restapi/get/Utility" level="all" additivity="false">
+  <AppenderRef ref="File"/>
+   </logger>
+   <logger name="src/test/java/com/ebpearls/restapi/get/QuoteGet" level="all" additivity="false">
+  <AppenderRef ref="File"/>
+   </logger>
+   <logger name="src/test/java/com/ebpearls/restapi/get/Notification" level="all" additivity="false">
+  <AppenderRef ref="File"/>
+   </logger>--> 
+  
+  
+    <!-- we can log at root level(applicable to entire project), level defines what type of errors to log, appenderRef defines where to log the errors  -->
+    <Root level="all">
+      <AppenderRef ref="File"/>
+    </Root>
+  </Loggers>
+</Configuration>
