@@ -31,6 +31,10 @@ public class Login {
 		p1 = TestConfigs.getEnvironmentProperties();
 	}
 	
+	public void dummy() {
+		
+	}
+	
 	private static Logger l1 = LogManager.getLogger(Login.class.getName());
 
 	@Test
